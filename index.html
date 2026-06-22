@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mani T — DevOps & Cloud Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0D1117;
+      --bg2:       #161B22;
+      --bg3:       #21262D;
+      --cyan:      #00D9FF;
+      --green:     #3FB950;
+      --slate:     #8B949E;
+      --border:    #30363D;
+      --text:      #F0F6FC;
+      --text-dim:  #C9D1D9;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--cyan);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--slate); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--slate);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem clamp(1.5rem, 8vw, 8rem); }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--cyan);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h2.section-title {
+      font-family: var(--mono);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.25;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .terminal-prompt {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .terminal-prompt::before {
+      content: '▶';
+      color: var(--cyan);
+      font-size: 0.6rem;
+    }
+    .hero-name {
+      font-family: var(--mono);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name .highlight { color: var(--cyan); }
+    .hero-title-line {
+      font-family: var(--mono);
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--slate);
+      margin-bottom: 2rem;
+      min-height: 2rem;
+    }
+    #typed-title { color: var(--text-dim); }
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 1.2em;
+      background: var(--cyan);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.9s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-bio {
+      font-size: 0.95rem;
+      color: var(--slate);
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--slate);
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      padding: 0.65rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--bg);
+      border: 1px solid var(--cyan);
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: transparent; color: var(--cyan); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+    .skill-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .skill-card-title {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.03em;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      background: var(--bg);
+      color: var(--cyan);
+      border: 1px solid rgba(0,217,255,0.25);
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--cyan), var(--border), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+      padding-left: 1.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -2.4rem; top: 0.4rem;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .job-meta {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .job-company {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+    }
+    .job-date {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--slate);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+    }
+    .job-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .job-bullets { list-style: none; padding: 0; }
+    .job-bullets li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: var(--slate);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      margin-bottom: 0.4rem;
+    }
+    .job-bullets li::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--green);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg2); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.75rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: var(--green); }
+    .project-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .project-icon { font-size: 1.4rem; }
+    .project-badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--green);
+      border: 1px solid rgba(63,185,80,0.4);
+      padding: 0.1rem 0.45rem;
+      border-radius: 3px;
+    }
+    .project-name {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--slate);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); text-align: center; }
+    .contact-inner { max-width: 560px; margin: 0 auto; }
+    .contact-heading {
+      font-family: var(--mono);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .contact-heading .highlight { color: var(--cyan); }
+    .contact-sub {
+      color: var(--slate);
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--slate);
+    }
+    footer span { color: var(--cyan); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.25rem; }
+      .hero-stats { gap: 1.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      .timeline-item { padding-left: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">mani<span>@</span>devops<span>:~$</span></div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="terminal-prompt">mani-t-devops ~ portfolio</div>
+    <h1 class="hero-name">Mani <span class="highlight">T</span></h1>
+    <div class="hero-title-line">
+      <span id="typed-title"></span><span class="cursor"></span>
+    </div>
+    <p class="hero-bio">
+      DevOps &amp; Cloud Engineer with 5.6+ years building production-grade infrastructure at scale —
+      from OTT streaming platforms to enterprise SaaS. I automate everything that moves and monitor everything that doesn't.
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">5.6+</span><span class="stat-label">Years Experience</span></div>
+      <div class="stat"><span class="stat-num">25+</span><span class="stat-label">Production Projects</span></div>
+      <div class="stat"><span class="stat-num">99.9%</span><span class="stat-label">Uptime Goal</span></div>
+      <div class="stat"><span class="stat-num">35%</span><span class="stat-label">Cost Reduction</span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:mani.t.redhat@gmail.com" class="btn btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn btn-ghost">View Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// toolchain</div>
+  <h2 class="section-title">Skills & Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-card-icon">☁️</div>
+      <div class="skill-card-title">Cloud Platforms</div>
+      <div class="skill-tags">
+        <span class="tag">AWS EC2</span><span class="tag">EKS</span><span class="tag">ECR</span>
+        <span class="tag">S3</span><span class="tag">RDS</span><span class="tag">VPC</span>
+        <span class="tag">IAM</span><span class="tag">Route53</span><span class="tag">ACM</span>
+        <span class="tag">CloudWatch</span><span class="tag">MediaConvert</span><span class="tag">WAF</span>
+        <span class="tag">GCP / GKE</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-icon">🐳</div>
+      <div class="skill-card-title">Containers & Orchestration</div>
+      <div class="skill-tags">
+        <span class="tag">Docker</span><span class="tag">Kubernetes</span>
+        <span class="tag">Helm</span><span class="tag">Amazon EKS</span><span class="tag">Google GKE</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-icon">⚙️</div>
+      <div class="skill-card-title">IaC & Automation</div>
+      <div class="skill-tags">
+        <span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Jenkins</span>
+        <span class="tag">CI/CD Pipelines</span><span class="tag">GitOps</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-icon">📊</div>
+      <div class="skill-card-title">Observability</div>
+      <div class="skill-tags">
+        <span class="tag">Prometheus</span><span class="tag">Grafana</span>
+        <span class="tag">Loki</span><span class="tag">Node Exporter</span><span class="tag">CloudWatch</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-icon">🗄️</div>
+      <div class="skill-card-title">Databases</div>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Cassandra</span>
+        <span class="tag">Redis</span><span class="tag">Elasticsearch</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-icon">🌐</div>
+      <div class="skill-card-title">Servers & Security</div>
+      <div class="skill-tags">
+        <span class="tag">Nginx</span><span class="tag">Apache</span><span class="tag">Certbot</span>
+        <span class="tag">Let's Encrypt</span><span class="tag">Caddy</span>
+        <span class="tag">AWS WAF</span><span class="tag">Linux</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// career</div>
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item fade-in">
+      <div class="job-meta">
+        <span class="job-company">Inspirisys Solutions</span>
+        <span class="job-date">Sept 2025 – Present</span>
+      </div>
+      <div class="job-title">Senior Software Engineer</div>
+      <ul class="job-bullets">
+        <li>Implement monitoring, logging, and alerting to improve platform observability and incident response time</li>
+        <li>Collaborate with SRE, security, and operations teams to enforce platform best practices</li>
+        <li>Troubleshoot production issues, perform root-cause analysis, and implement preventive solutions</li>
+        <li>Enforce platform security controls, access management, and compliance standards</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="job-meta">
+        <span class="job-company">Contus Tech</span>
+        <span class="job-date">Oct 2021 – July 2025</span>
+      </div>
+      <div class="job-title">Cloud Administrator G-I</div>
+      <ul class="job-bullets">
+        <li>Deployed and managed AWS infrastructure — EC2, VPC, EKS, ECR, S3, RDS, IAM, Route53, CloudWatch</li>
+        <li>Managed 25+ production projects including OTT, call & chat platforms, and enterprise applications</li>
+        <li>Provisioned infrastructure via Terraform across Dev, QA, Staging, and Production environments</li>
+        <li>Implemented Jenkins CI/CD with master-agent config for parallel builds and automated releases</li>
+        <li>Managed Kubernetes on Amazon EKS and Google GKE with Helm-based deployments</li>
+        <li>Built centralized monitoring with Prometheus, Grafana, Loki, and Node Exporter</li>
+        <li>Managed DNS and led Route53 cross-account migrations; secured environments with AWS WAF</li>
+        <li>Automated DB backups (MySQL, Cassandra, MongoDB) to S3 with recovery readiness</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="job-meta">
+        <span class="job-company">Qurhealth Solutions Pvt Ltd</span>
+        <span class="job-date">March 2020 – June 2021</span>
+      </div>
+      <div class="job-title">Software Trainee</div>
+      <ul class="job-bullets">
+        <li>Reduced AWS monthly infrastructure cost by 20–35% via instance right-sizing, Reserved Instances, and S3 lifecycle policies</li>
+        <li>Managed incidents and service requests using ServiceNow and JIRA</li>
+        <li>Supported developers in resolving deployment issues and improving application reliability</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// production systems</div>
+  <h2 class="section-title">Platforms Supported</h2>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">💬</div>
+        <span class="project-badge">Messaging & Calls</span>
+      </div>
+      <div class="project-name">TrueID</div>
+      <div class="project-desc">Real-time messaging and call platform with Cassandra for message persistence, Redis for session management, and Kubernetes auto-scaling for peak load.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Kubernetes</span><span class="stack-tag">Cassandra</span>
+        <span class="stack-tag">Redis</span><span class="stack-tag">Helm</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">📺</div>
+        <span class="project-badge">OTT Streaming</span>
+      </div>
+      <div class="project-name">ReeliesDrama</div>
+      <div class="project-desc">High-availability OTT drama streaming platform with AWS MediaConvert integration, global CDN routing, and 24×7 uptime SLA management.</div>
+      <div class="project-stack">
+        <span class="stack-tag">EKS</span><span class="stack-tag">MediaConvert</span>
+        <span class="stack-tag">CloudFront</span><span class="stack-tag">Route53</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">📺</div>
+        <span class="project-badge">OTT Streaming</span>
+      </div>
+      <div class="project-name">Cafrica / FanVu / Ekluviya</div>
+      <div class="project-desc">Multi-region OTT streaming platforms with Route53 failover, WAF protection, automated SSL management, and weekly client performance reporting.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Route53</span><span class="stack-tag">WAF</span>
+        <span class="stack-tag">ACM</span><span class="stack-tag">Ansible</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">📺</div>
+        <span class="project-badge">OTT Streaming</span>
+      </div>
+      <div class="project-name">Sumedplus</div>
+      <div class="project-desc">OTT streaming platform with strict security controls — VPC segmentation, IAM policies, vulnerability assessments, and encrypted data pipelines to S3.</div>
+      <div class="project-stack">
+        <span class="stack-tag">VPC</span><span class="stack-tag">IAM</span>
+        <span class="stack-tag">RDS</span><span class="stack-tag">S3</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">📺</div>
+        <span class="project-badge">OTT Streaming</span>
+      </div>
+      <div class="project-name">Royal Enfield</div>
+      <div class="project-desc">OTT streaming infrastructure for Royal Enfield with robust CI/CD, Terraform-managed environments, and a full Prometheus + Grafana observability stack.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Terraform</span><span class="stack-tag">Jenkins</span>
+        <span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">💰</div>
+        <span class="project-badge">Cost Engineering</span>
+      </div>
+      <div class="project-name">Cloud Cost Optimization</div>
+      <div class="project-desc">Achieved 20–35% reduction in monthly AWS spend through right-sizing, Reserved Instances, and intelligent S3 lifecycle policies across multiple client accounts.</div>
+      <div class="project-stack">
+        <span class="stack-tag">AWS Cost Explorer</span><span class="stack-tag">S3 Lifecycle</span>
+        <span class="stack-tag">Reserved Instances</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="text-align:center; display:block; margin-bottom: 1rem;">// let's connect</div>
+    <h2 class="contact-heading">Open to <span class="highlight">Opportunities</span></h2>
+    <p class="contact-sub">
+      Whether it's a challenging infrastructure problem, a platform reliability role,
+      or a conversation about cloud-native architecture — I'm always up for it.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:mani.t.redhat@gmail.com" class="contact-link">
+        <span>✉</span> mani.t.redhat@gmail.com
+      </a>
+      <a href="tel:+917010545124" class="contact-link">
+        <span>📱</span> +91 70105 45124
+      </a>
+      <a href="https://github.com/mani-t-devops" target="_blank" class="contact-link">
+        <span>⌥</span> github.com/mani-t-devops
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Built with <span>&#9825;</span> and raw HTML · Mani T © 2025 · <span>mani-t-devops.github.io</span>
+</footer>
+
+<script>
+  // Typewriter effect
+  const titles = [
+    'DevOps Engineer',
+    'Cloud Infrastructure Architect',
+    'Kubernetes & Helm Specialist',
+    'CI/CD Pipeline Builder',
+    'SRE & Platform Engineer',
+  ];
+  let ti = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed-title');
+
+  function type() {
+    const current = titles[ti];
+    if (!deleting) {
+      el.textContent = current.slice(0, ++ci);
+      if (ci === current.length) {
+        deleting = true;
+        setTimeout(type, 2000);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --ci);
+      if (ci === 0) {
+        deleting = false;
+        ti = (ti + 1) % titles.length;
+      }
+    }
+    setTimeout(type, deleting ? 45 : 80);
+  }
+  type();
+
+  // Intersection observer for fade-in
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
