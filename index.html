@@ -1,716 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mani T — DevOps & Cloud Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mani T — DevOps & Cloud Engineer with 5.6+ years. AWS, Kubernetes, Terraform, CI/CD."/>
+<title>Mani T — DevOps & Cloud Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080C10;--bg2:#0E1318;--bg3:#141A22;--bg4:#1C2530;
+  --cyan:#00E5FF;--cyan-dim:rgba(0,229,255,0.12);
+  --green:#00FF87;--green-dim:rgba(0,255,135,0.12);
+  --slate:#6B7A8D;--slate2:#8E9AAA;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#EDF2F7;--text-dim:#A0ADB8;
+  --mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;
+  --radius:10px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-    :root {
-      --bg:        #0D1117;
-      --bg2:       #161B22;
-      --bg3:       #21262D;
-      --cyan:      #00D9FF;
-      --green:     #3FB950;
-      --slate:     #8B949E;
-      --border:    #30363D;
-      --text:      #F0F6FC;
-      --text-dim:  #C9D1D9;
-      --mono:      'JetBrains Mono', monospace;
-      --sans:      'Inter', sans-serif;
-    }
+.otw-strip{background:linear-gradient(90deg,rgba(0,255,135,0.08),rgba(0,229,255,0.06));border-bottom:1px solid rgba(0,255,135,0.2);padding:0.5rem 2rem;display:flex;align-items:center;justify-content:center;gap:0.75rem;font-family:var(--mono);font-size:0.72rem;position:sticky;top:0;z-index:200;backdrop-filter:blur(12px)}
+.otw-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink-dot 1.4s ease-in-out infinite;flex-shrink:0}
+@keyframes blink-dot{0%,100%{opacity:1;box-shadow:0 0 10px var(--green)}50%{opacity:0.5;box-shadow:0 0 3px var(--green)}}
+.otw-label{color:var(--green);font-weight:700;letter-spacing:0.1em}
+.otw-sep{color:var(--slate)}
+.otw-txt{color:var(--text-dim)}
+.otw-link{color:var(--cyan);text-decoration:none;transition:opacity 0.2s}
+.otw-link:hover{opacity:0.75}
 
-    html { scroll-behavior: smooth; }
+nav{position:sticky;top:33px;z-index:100;background:rgba(8,12,16,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);height:58px}
+.nav-brand{font-family:var(--mono);font-size:0.85rem;color:var(--cyan);display:flex;align-items:center;gap:0.5rem}
+.nav-brand-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:0.72rem;color:var(--slate2);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.nav-links a:hover{color:var(--cyan)}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+#home{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 clamp(2rem,7vw,6rem);gap:3rem;position:relative;overflow:hidden}
+#home::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,black 40%,transparent 100%)}
+#home::after{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,229,255,0.05) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(13,17,23,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      height: 56px;
-    }
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.9rem;
-      color: var(--cyan);
-      letter-spacing: 0.02em;
-    }
-    .nav-logo span { color: var(--slate); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--slate);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--cyan); }
+.hero-left{position:relative;z-index:1;padding:80px 0 60px}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.68rem;color:var(--green);background:var(--green-dim);border:1px solid rgba(0,255,135,0.2);padding:0.3rem 0.8rem;border-radius:20px;letter-spacing:0.1em;margin-bottom:1.5rem}
+.hero-name{font-size:clamp(3.5rem,7vw,5.5rem);font-weight:700;line-height:1;letter-spacing:-0.03em;margin-bottom:0.25rem}
+.hero-name .first{color:var(--text)}
+.hero-name .last{color:transparent;-webkit-text-stroke:1.5px var(--cyan)}
+.hero-role{font-family:var(--mono);font-size:clamp(0.9rem,2vw,1.1rem);color:var(--slate2);margin-bottom:1.75rem;letter-spacing:0.02em}
+.hero-role span{color:var(--cyan)}
+.hero-bio{font-size:0.95rem;color:var(--text-dim);max-width:440px;line-height:1.8;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.hstat{display:flex;flex-direction:column;gap:2px}
+.hstat-n{font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--cyan);line-height:1}
+.hstat-l{font-size:0.72rem;color:var(--slate);letter-spacing:0.04em}
+.hero-cta{display:flex;gap:0.85rem;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.06em;padding:0.7rem 1.5rem;border-radius:6px;text-decoration:none;cursor:pointer;transition:all 0.2s;border:none}
+.btn-primary{background:var(--cyan);color:#000;font-weight:700}
+.btn-primary:hover{background:#00c4e0;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--text-dim);border:1px solid var(--border2)}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-1px)}
 
-    /* ── SECTIONS ── */
-    section { padding: 6rem clamp(1.5rem, 8vw, 8rem); }
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--cyan);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    h2.section-title {
-      font-family: var(--mono);
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
-    }
+.hero-right{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:80px 0 60px}
+.hero-avatar-wrap{position:relative;width:260px;height:260px;margin-bottom:2rem}
+.avatar-ring{position:absolute;inset:-8px;border-radius:50%;border:1.5px solid rgba(0,229,255,0.25);animation:spin-ring 12s linear infinite}
+.avatar-ring::before{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+@keyframes spin-ring{to{transform:rotate(360deg)}}
+.avatar-circle{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:4rem;font-weight:700;color:var(--cyan);position:relative;overflow:hidden}
+.avatar-circle::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(0,229,255,0.08),transparent 60%)}
+.hero-location{font-family:var(--mono);font-size:0.72rem;color:var(--slate2);display:flex;align-items:center;gap:0.4rem;margin-bottom:1.5rem}
+.hero-location::before{content:'📍';font-size:0.85rem}
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding-top: 80px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-grid-bg {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 48px 48px;
-      opacity: 0.25;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
-    }
-    .hero-content { position: relative; z-index: 1; }
-    .terminal-prompt {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--green);
-      margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .terminal-prompt::before {
-      content: '▶';
-      color: var(--cyan);
-      font-size: 0.6rem;
-    }
-    .hero-name {
-      font-family: var(--mono);
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-    .hero-name .highlight { color: var(--cyan); }
-    .hero-title-line {
-      font-family: var(--mono);
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: var(--slate);
-      margin-bottom: 2rem;
-      min-height: 2rem;
-    }
-    #typed-title { color: var(--text-dim); }
-    .cursor {
-      display: inline-block;
-      width: 2px; height: 1.2em;
-      background: var(--cyan);
-      margin-left: 2px;
-      vertical-align: middle;
-      animation: blink 0.9s step-end infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
+.pills-wrap{width:100%;max-width:380px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 15%,black 85%,transparent);position:relative}
+.pills-track{display:flex;gap:0.5rem;animation:scroll-pills 18s linear infinite;width:max-content}
+.pills-track:hover{animation-play-state:paused}
+@keyframes scroll-pills{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.pill{font-family:var(--mono);font-size:0.65rem;background:var(--bg3);border:1px solid var(--border2);color:var(--text-dim);padding:0.3rem 0.75rem;border-radius:20px;white-space:nowrap;letter-spacing:0.04em;flex-shrink:0}
+.pill.hl{color:var(--cyan);border-color:rgba(0,229,255,0.3)}
 
-    .hero-bio {
-      font-size: 0.95rem;
-      color: var(--slate);
-      max-width: 560px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-    .hero-stats {
-      display: flex; gap: 2.5rem; margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-    .stat { display: flex; flex-direction: column; }
-    .stat-num {
-      font-family: var(--mono);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--cyan);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--slate);
-      letter-spacing: 0.05em;
-      margin-top: 4px;
-    }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-      padding: 0.65rem 1.4rem;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--cyan);
-      color: var(--bg);
-      border: 1px solid var(--cyan);
-      font-weight: 600;
-    }
-    .btn-primary:hover { background: transparent; color: var(--cyan); }
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-dim);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+section{padding:6rem clamp(2rem,7vw,6rem)}
+.sec-eyebrow{font-family:var(--mono);font-size:0.65rem;color:var(--cyan);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.6rem}
+.sec-title{font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;margin-bottom:3rem}
+.sec-title em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--cyan)}
 
-    /* ── SKILLS ── */
-    #skills { background: var(--bg2); }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .skill-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .skill-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
-    .skill-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-    .skill-card-title {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--text);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.03em;
-    }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      background: var(--bg);
-      color: var(--cyan);
-      border: 1px solid rgba(0,217,255,0.25);
-      padding: 0.2rem 0.55rem;
-      border-radius: 3px;
-      letter-spacing: 0.03em;
-    }
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--text-dim);font-size:0.95rem;line-height:1.85;margin-bottom:1rem}
+.about-text p strong{color:var(--text)}
+.about-text .hl{color:var(--cyan)}
+.edu-cards{display:flex;flex-direction:column;gap:1rem}
+.edu-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.edu-icon{font-size:1.5rem;flex-shrink:0}
+.edu-label{font-size:0.72rem;color:var(--slate);margin-bottom:2px}
+.edu-val{font-family:var(--mono);font-size:0.85rem;color:var(--text);font-weight:600}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center}
+.stat-card .n{font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--cyan);display:block;line-height:1;margin-bottom:4px}
+.stat-card .l{font-size:0.72rem;color:var(--slate)}
 
-    /* ── EXPERIENCE ── */
-    #experience { background: var(--bg); }
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--cyan), var(--border), transparent);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 3.5rem;
-      padding-left: 1.5rem;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute; left: -2.4rem; top: 0.4rem;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 8px var(--cyan);
-    }
-    .timeline-item:last-child { margin-bottom: 0; }
-    .job-meta {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .job-company {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--cyan);
-      letter-spacing: 0.08em;
-    }
-    .job-date {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--slate);
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.5rem;
-      border-radius: 3px;
-    }
-    .job-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-    .job-bullets { list-style: none; padding: 0; }
-    .job-bullets li {
-      position: relative;
-      padding-left: 1.2rem;
-      color: var(--slate);
-      font-size: 0.875rem;
-      line-height: 1.7;
-      margin-bottom: 0.4rem;
-    }
-    .job-bullets li::before {
-      content: '›';
-      position: absolute; left: 0;
-      color: var(--green);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
+#skills{background:var(--bg)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem}
+.sk-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color 0.25s,transform 0.25s;cursor:default}
+.sk-card:hover{border-color:rgba(0,229,255,0.35);transform:translateY(-3px)}
+.sk-icon{font-size:1.6rem;margin-bottom:0.75rem}
+.sk-name{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:0.85rem}
+.sk-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.sk-tag{font-family:var(--mono);font-size:0.65rem;background:var(--bg3);color:var(--cyan);border:1px solid rgba(0,229,255,0.18);padding:0.2rem 0.55rem;border-radius:4px}
 
-    /* ── PROJECTS ── */
-    #projects { background: var(--bg2); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.75rem;
-      display: flex; flex-direction: column;
-      transition: border-color 0.2s;
-    }
-    .project-card:hover { border-color: var(--green); }
-    .project-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 0.75rem;
-    }
-    .project-icon { font-size: 1.4rem; }
-    .project-badge {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--green);
-      border: 1px solid rgba(63,185,80,0.4);
-      padding: 0.1rem 0.45rem;
-      border-radius: 3px;
-    }
-    .project-name {
-      font-family: var(--mono);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .project-desc {
-      font-size: 0.85rem;
-      color: var(--slate);
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 1.25rem;
-    }
-    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .stack-tag {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--slate);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.45rem;
-      border-radius: 3px;
-    }
+#experience{background:var(--bg2)}
+.exp-intro{color:var(--text-dim);font-size:0.95rem;max-width:560px;margin-bottom:3rem;line-height:1.7}
+.exp-list{display:flex;flex-direction:column;gap:0;position:relative}
+.exp-list::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),rgba(0,229,255,0.1) 80%,transparent)}
+.exp-item{display:grid;grid-template-columns:180px 1fr;gap:0 2.5rem;padding:0 0 3.5rem 0;position:relative}
+.exp-item:last-child{padding-bottom:0}
+.exp-item::before{content:'';position:absolute;left:-4px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px rgba(0,229,255,0.6)}
+.exp-date-col{padding-top:4px}
+.exp-period{font-family:var(--mono);font-size:0.72rem;color:var(--slate2);line-height:1.6}
+.exp-period strong{display:block;color:var(--text-dim);margin-bottom:2px}
+.exp-badge{display:inline-block;font-family:var(--mono);font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:3px;margin-top:0.5rem}
+.badge-past{background:var(--bg3);color:var(--slate);border:1px solid var(--border)}
+.exp-company{font-family:var(--mono);font-size:0.7rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem}
+.exp-role{font-size:1.15rem;font-weight:600;color:var(--text);margin-bottom:0.2rem}
+.exp-loc{font-size:0.8rem;color:var(--slate);margin-bottom:1rem}
+.exp-desc{font-size:0.875rem;color:var(--text-dim);line-height:1.8;margin-bottom:1rem}
+.exp-pills{display:flex;flex-wrap:wrap;gap:0.4rem}
+.exp-pill{font-family:var(--mono);font-size:0.63rem;background:var(--bg3);color:var(--slate2);border:1px solid var(--border);padding:0.2rem 0.55rem;border-radius:4px}
 
-    /* ── CONTACT ── */
-    #contact { background: var(--bg); text-align: center; }
-    .contact-inner { max-width: 560px; margin: 0 auto; }
-    .contact-heading {
-      font-family: var(--mono);
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-    .contact-heading .highlight { color: var(--cyan); }
-    .contact-sub {
-      color: var(--slate);
-      font-size: 0.9rem;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-    }
-    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .contact-link {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 0.6rem 1.2rem;
-      border-radius: 4px;
-      display: flex; align-items: center; gap: 0.5rem;
-      transition: all 0.2s;
-    }
-    .contact-link:hover { border-color: var(--cyan); color: var(--cyan); }
+#platforms{background:var(--bg)}
+.platforms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.plat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;display:flex;flex-direction:column;transition:border-color 0.25s}
+.plat-card:hover{border-color:rgba(0,229,255,0.3)}
+.plat-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem}
+.plat-icon{font-size:1.4rem}
+.plat-type{font-family:var(--mono);font-size:0.62rem;color:var(--slate);border:1px solid var(--border);padding:0.15rem 0.5rem;border-radius:3px}
+.plat-name{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+.plat-desc{font-size:0.83rem;color:var(--text-dim);line-height:1.7;flex:1;margin-bottom:1.1rem}
+.plat-stack{display:flex;flex-wrap:wrap;gap:0.35rem}
+.plat-tag{font-family:var(--mono);font-size:0.62rem;color:var(--slate);border:1px solid var(--border);padding:0.15rem 0.45rem;border-radius:3px}
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 2rem;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--slate);
-    }
-    footer span { color: var(--cyan); }
+#contact{background:var(--bg2);text-align:center}
+.contact-inner{max-width:600px;margin:0 auto}
+.contact-heading{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem}
+.contact-heading em{font-style:normal;color:var(--cyan)}
+.contact-sub{color:var(--text-dim);font-size:0.95rem;line-height:1.7;margin-bottom:2.5rem}
+.contact-cards{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
+.contact-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.5rem;text-decoration:none;display:flex;align-items:center;gap:0.6rem;transition:all 0.2s}
+.contact-card:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.contact-card-icon{font-size:1rem}
+.contact-card-text{text-align:left}
+.contact-card-label{font-size:0.65rem;color:var(--slate);font-family:var(--mono);letter-spacing:0.06em;display:block;margin-bottom:1px}
+.contact-card-val{font-size:0.82rem;color:var(--text-dim)}
+.contact-card:hover .contact-card-val{color:var(--cyan)}
+.avail-note{font-family:var(--mono);font-size:0.72rem;color:var(--slate);display:flex;align-items:center;justify-content:center;gap:0.5rem}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);flex-shrink:0}
 
-    /* ── ANIMATIONS ── */
-    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
+footer{background:var(--bg);border-top:1px solid var(--border);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.68rem;color:var(--slate);gap:0.5rem;flex-wrap:wrap;text-align:center}
+footer a{color:var(--cyan);text-decoration:none}
 
-    @media (max-width: 640px) {
-      nav { padding: 0 1rem; }
-      .nav-links { display: none; }
-      section { padding: 4rem 1.25rem; }
-      .hero-stats { gap: 1.5rem; }
-      .timeline { padding-left: 1.5rem; }
-      .timeline-item { padding-left: 1rem; }
-    }
-  </style>
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  #home{grid-template-columns:1fr;text-align:center;padding-top:3rem}
+  .hero-left{padding:60px 0 0}
+  .hero-right{padding:2rem 0 60px}
+  .hero-bio,.hero-stats,.hero-cta{margin-left:auto;margin-right:auto}
+  .hero-stats,.hero-cta{justify-content:center}
+  .about-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr;gap:0.5rem}
+  .exp-item::before,.exp-list::before{display:none}
+  .exp-item{padding-left:0;border-bottom:1px solid var(--border);padding-bottom:2.5rem}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  section{padding:4rem 1.25rem}
+  #home{padding:2rem 1.25rem}
+  .otw-txt{display:none}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
+<div class="otw-strip">
+  <div class="otw-dot"></div>
+  <span class="otw-label">OPEN TO WORK</span>
+  <span class="otw-sep">·</span>
+  <span class="otw-txt">Available immediately · DevOps &amp; Cloud roles</span>
+  <span class="otw-sep">·</span>
+  <a href="mailto:mani.t.redhat@gmail.com" class="otw-link">mani.t.redhat@gmail.com</a>
+</div>
+
 <nav>
-  <div class="nav-logo">mani<span>@</span>devops<span>:~$</span></div>
+  <div class="nav-brand"><div class="nav-brand-dot"></div>mani-t-devops</div>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="#platforms">Platforms</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-content">
-    <div class="terminal-prompt">mani-t-devops ~ portfolio</div>
-    <h1 class="hero-name">Mani <span class="highlight">T</span></h1>
-    <div class="hero-title-line">
-      <span id="typed-title"></span><span class="cursor"></span>
-    </div>
-    <p class="hero-bio">
-      DevOps &amp; Cloud Engineer with 5.6+ years building production-grade infrastructure at scale —
-      from OTT streaming platforms to enterprise SaaS. I automate everything that moves and monitor everything that doesn't.
-    </p>
+<section id="home">
+  <div class="hero-left">
+    <div class="hero-tag"><div class="otw-dot" style="width:5px;height:5px"></div>Available · Chennai, India</div>
+    <h1 class="hero-name"><div class="first">Mani</div><div class="last">T</div></h1>
+    <div class="hero-role">DevOps &amp; <span>Cloud Engineer</span></div>
+    <p class="hero-bio">5.6+ years building production-grade infrastructure — OTT streaming, real-time comms, enterprise platforms. I automate everything that moves and monitor everything that doesn't.</p>
     <div class="hero-stats">
-      <div class="stat"><span class="stat-num">5.6+</span><span class="stat-label">Years Experience</span></div>
-      <div class="stat"><span class="stat-num">25+</span><span class="stat-label">Production Projects</span></div>
-      <div class="stat"><span class="stat-num">99.9%</span><span class="stat-label">Uptime Goal</span></div>
-      <div class="stat"><span class="stat-num">35%</span><span class="stat-label">Cost Reduction</span></div>
+      <div class="hstat"><span class="hstat-n">5.6+</span><span class="hstat-l">Years Exp</span></div>
+      <div class="hstat"><span class="hstat-n">25+</span><span class="hstat-l">Prod Projects</span></div>
+      <div class="hstat"><span class="hstat-n">35%</span><span class="hstat-l">Cost Saved</span></div>
     </div>
     <div class="hero-cta">
       <a href="mailto:mani.t.redhat@gmail.com" class="btn btn-primary">Get in Touch</a>
-      <a href="#experience" class="btn btn-ghost">View Experience</a>
+      <a href="#experience" class="btn btn-outline">View Experience</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-avatar-wrap">
+      <div class="avatar-ring"></div>
+      <div class="avatar-circle">MT</div>
+    </div>
+    <div class="hero-location">Chennai, India · Open to remote</div>
+    <div class="pills-wrap">
+      <div class="pills-track">
+        <span class="pill hl">AWS</span><span class="pill">Kubernetes</span><span class="pill hl">Terraform</span><span class="pill">Docker</span><span class="pill hl">Jenkins</span><span class="pill">Helm</span><span class="pill">Ansible</span><span class="pill hl">Prometheus</span><span class="pill">Grafana</span><span class="pill">Loki</span><span class="pill hl">EKS</span><span class="pill">Linux</span><span class="pill">Nginx</span>
+        <span class="pill hl">AWS</span><span class="pill">Kubernetes</span><span class="pill hl">Terraform</span><span class="pill">Docker</span><span class="pill hl">Jenkins</span><span class="pill">Helm</span><span class="pill">Ansible</span><span class="pill hl">Prometheus</span><span class="pill">Grafana</span><span class="pill">Loki</span><span class="pill hl">EKS</span><span class="pill">Linux</span><span class="pill">Nginx</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+<section id="about">
+  <div class="sec-eyebrow">// about me</div>
+  <h2 class="sec-title">Cloud engineer.<br><em>Production obsessed.</em></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Hey, I'm <strong>Mani T</strong> — a DevOps and Cloud Engineer with <span class="hl">5.6+ years</span> of hands-on experience designing, deploying, and keeping large-scale production systems alive around the clock.</p>
+      <p>At <strong>Contus Tech</strong>, I owned cloud infrastructure for 25+ production projects — OTT streaming platforms, real-time messaging &amp; call platforms, and enterprise apps — all running on AWS with Kubernetes at the core.</p>
+      <p>Most recently at <strong>Inspirisys Solutions</strong> (Sept 2025 – July 1, 2026), I focused on platform observability, SRE practices, and security controls across multi-environment deployments.</p>
+      <p>Based in <span class="hl">Chennai, India</span> — open to on-site, hybrid, or fully remote roles in DevOps, SRE, or Cloud Engineering.</p>
+    </div>
+    <div class="reveal">
+      <div class="stat-grid">
+        <div class="stat-card"><span class="n">5.6+</span><span class="l">Years Experience</span></div>
+        <div class="stat-card"><span class="n">25+</span><span class="l">Production Projects</span></div>
+        <div class="stat-card"><span class="n">35%</span><span class="l">AWS Cost Reduced</span></div>
+        <div class="stat-card"><span class="n">24x7</span><span class="l">SLA Maintained</span></div>
+      </div>
+      <div class="edu-cards">
+        <div class="edu-card"><div class="edu-icon">📍</div><div><div class="edu-label">Location</div><div class="edu-val">Chennai, Tamil Nadu, India</div></div></div>
+        <div class="edu-card"><div class="edu-icon">✅</div><div><div class="edu-label">Status</div><div class="edu-val" style="color:var(--green)">Available Immediately</div></div></div>
+        <div class="edu-card"><div class="edu-icon">📅</div><div><div class="edu-label">Last Working Date</div><div class="edu-val">July 1, 2026</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
-  <div class="section-label">// toolchain</div>
-  <h2 class="section-title">Skills & Technologies</h2>
+  <div class="sec-eyebrow">// toolchain</div>
+  <h2 class="sec-title">Core <em>Skills</em></h2>
   <div class="skills-grid">
-    <div class="skill-card fade-in">
-      <div class="skill-card-icon">☁️</div>
-      <div class="skill-card-title">Cloud Platforms</div>
-      <div class="skill-tags">
-        <span class="tag">AWS EC2</span><span class="tag">EKS</span><span class="tag">ECR</span>
-        <span class="tag">S3</span><span class="tag">RDS</span><span class="tag">VPC</span>
-        <span class="tag">IAM</span><span class="tag">Route53</span><span class="tag">ACM</span>
-        <span class="tag">CloudWatch</span><span class="tag">MediaConvert</span><span class="tag">WAF</span>
-        <span class="tag">GCP / GKE</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-card-icon">🐳</div>
-      <div class="skill-card-title">Containers & Orchestration</div>
-      <div class="skill-tags">
-        <span class="tag">Docker</span><span class="tag">Kubernetes</span>
-        <span class="tag">Helm</span><span class="tag">Amazon EKS</span><span class="tag">Google GKE</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-card-icon">⚙️</div>
-      <div class="skill-card-title">IaC & Automation</div>
-      <div class="skill-tags">
-        <span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Jenkins</span>
-        <span class="tag">CI/CD Pipelines</span><span class="tag">GitOps</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-card-icon">📊</div>
-      <div class="skill-card-title">Observability</div>
-      <div class="skill-tags">
-        <span class="tag">Prometheus</span><span class="tag">Grafana</span>
-        <span class="tag">Loki</span><span class="tag">Node Exporter</span><span class="tag">CloudWatch</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-card-icon">🗄️</div>
-      <div class="skill-card-title">Databases</div>
-      <div class="skill-tags">
-        <span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Cassandra</span>
-        <span class="tag">Redis</span><span class="tag">Elasticsearch</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-card-icon">🌐</div>
-      <div class="skill-card-title">Servers & Security</div>
-      <div class="skill-tags">
-        <span class="tag">Nginx</span><span class="tag">Apache</span><span class="tag">Certbot</span>
-        <span class="tag">Let's Encrypt</span><span class="tag">Caddy</span>
-        <span class="tag">AWS WAF</span><span class="tag">Linux</span>
-      </div>
-    </div>
+    <div class="sk-card reveal"><div class="sk-icon">☁️</div><div class="sk-name">Cloud Platforms</div><div class="sk-tags"><span class="sk-tag">AWS EC2</span><span class="sk-tag">EKS</span><span class="sk-tag">ECR</span><span class="sk-tag">S3</span><span class="sk-tag">RDS</span><span class="sk-tag">VPC</span><span class="sk-tag">IAM</span><span class="sk-tag">Route53</span><span class="sk-tag">ACM</span><span class="sk-tag">CloudWatch</span><span class="sk-tag">WAF</span><span class="sk-tag">MediaConvert</span><span class="sk-tag">GCP / GKE</span></div></div>
+    <div class="sk-card reveal"><div class="sk-icon">🐳</div><div class="sk-name">Containers &amp; Orchestration</div><div class="sk-tags"><span class="sk-tag">Docker</span><span class="sk-tag">Kubernetes</span><span class="sk-tag">Helm</span><span class="sk-tag">Amazon EKS</span><span class="sk-tag">Google GKE</span></div></div>
+    <div class="sk-card reveal"><div class="sk-icon">⚙️</div><div class="sk-name">IaC &amp; Automation</div><div class="sk-tags"><span class="sk-tag">Terraform</span><span class="sk-tag">Ansible</span><span class="sk-tag">Jenkins</span><span class="sk-tag">CI/CD Pipelines</span><span class="sk-tag">GitOps</span></div></div>
+    <div class="sk-card reveal"><div class="sk-icon">📊</div><div class="sk-name">Monitoring &amp; Observability</div><div class="sk-tags"><span class="sk-tag">Prometheus</span><span class="sk-tag">Grafana</span><span class="sk-tag">Loki</span><span class="sk-tag">Node Exporter</span><span class="sk-tag">CloudWatch</span></div></div>
+    <div class="sk-card reveal"><div class="sk-icon">🗄️</div><div class="sk-name">Databases</div><div class="sk-tags"><span class="sk-tag">MySQL</span><span class="sk-tag">MongoDB</span><span class="sk-tag">Cassandra</span><span class="sk-tag">Redis</span><span class="sk-tag">Elasticsearch</span></div></div>
+    <div class="sk-card reveal"><div class="sk-icon">🔒</div><div class="sk-name">Security &amp; Networking</div><div class="sk-tags"><span class="sk-tag">AWS WAF</span><span class="sk-tag">VPC Segmentation</span><span class="sk-tag">Nginx</span><span class="sk-tag">Apache</span><span class="sk-tag">Certbot</span><span class="sk-tag">Let's Encrypt</span><span class="sk-tag">Caddy</span></div></div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">// career</div>
-  <h2 class="section-title">Professional Experience</h2>
-  <div class="timeline">
+  <div class="sec-eyebrow">// career</div>
+  <h2 class="sec-title">Work <em>Experience</em></h2>
+  <p class="exp-intro">Building and scaling infrastructure across OTT streaming, real-time communications, and enterprise platforms.</p>
+  <div class="exp-list">
 
-    <div class="timeline-item fade-in">
-      <div class="job-meta">
-        <span class="job-company">Inspirisys Solutions</span>
-        <span class="job-date">Sept 2025 – Present</span>
+    <div class="exp-item reveal">
+      <div class="exp-date-col">
+        <div class="exp-period"><strong>Sept 2025 – July 2026</strong>~10 months</div>
+        <span class="exp-badge badge-past">Last Role</span>
       </div>
-      <div class="job-title">Senior Software Engineer</div>
-      <ul class="job-bullets">
-        <li>Implement monitoring, logging, and alerting to improve platform observability and incident response time</li>
-        <li>Collaborate with SRE, security, and operations teams to enforce platform best practices</li>
-        <li>Troubleshoot production issues, perform root-cause analysis, and implement preventive solutions</li>
-        <li>Enforce platform security controls, access management, and compliance standards</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item fade-in">
-      <div class="job-meta">
-        <span class="job-company">Contus Tech</span>
-        <span class="job-date">Oct 2021 – July 2025</span>
-      </div>
-      <div class="job-title">Cloud Administrator G-I</div>
-      <ul class="job-bullets">
-        <li>Deployed and managed AWS infrastructure — EC2, VPC, EKS, ECR, S3, RDS, IAM, Route53, CloudWatch</li>
-        <li>Managed 25+ production projects including OTT, call & chat platforms, and enterprise applications</li>
-        <li>Provisioned infrastructure via Terraform across Dev, QA, Staging, and Production environments</li>
-        <li>Implemented Jenkins CI/CD with master-agent config for parallel builds and automated releases</li>
-        <li>Managed Kubernetes on Amazon EKS and Google GKE with Helm-based deployments</li>
-        <li>Built centralized monitoring with Prometheus, Grafana, Loki, and Node Exporter</li>
-        <li>Managed DNS and led Route53 cross-account migrations; secured environments with AWS WAF</li>
-        <li>Automated DB backups (MySQL, Cassandra, MongoDB) to S3 with recovery readiness</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item fade-in">
-      <div class="job-meta">
-        <span class="job-company">Qurhealth Solutions Pvt Ltd</span>
-        <span class="job-date">March 2020 – June 2021</span>
-      </div>
-      <div class="job-title">Software Trainee</div>
-      <ul class="job-bullets">
-        <li>Reduced AWS monthly infrastructure cost by 20–35% via instance right-sizing, Reserved Instances, and S3 lifecycle policies</li>
-        <li>Managed incidents and service requests using ServiceNow and JIRA</li>
-        <li>Supported developers in resolving deployment issues and improving application reliability</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label">// production systems</div>
-  <h2 class="section-title">Platforms Supported</h2>
-  <div class="projects-grid">
-
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-icon">💬</div>
-        <span class="project-badge">Messaging & Calls</span>
-      </div>
-      <div class="project-name">TrueID</div>
-      <div class="project-desc">Real-time messaging and call platform with Cassandra for message persistence, Redis for session management, and Kubernetes auto-scaling for peak load.</div>
-      <div class="project-stack">
-        <span class="stack-tag">Kubernetes</span><span class="stack-tag">Cassandra</span>
-        <span class="stack-tag">Redis</span><span class="stack-tag">Helm</span>
+      <div class="exp-body">
+        <div class="exp-company">Inspirisys Solutions</div>
+        <div class="exp-role">Senior Software Engineer</div>
+        <div class="exp-loc">Chennai, India · Full-time</div>
+        <div class="exp-desc">Led platform observability and incident response — implementing monitoring, logging, and alerting stacks to reduce MTTR. Collaborated with SRE, security, and operations teams to enforce best practices and compliance across multi-environment deployments.</div>
+        <div class="exp-pills"><span class="exp-pill">Prometheus</span><span class="exp-pill">Grafana</span><span class="exp-pill">AWS</span><span class="exp-pill">Kubernetes</span><span class="exp-pill">Linux</span></div>
       </div>
     </div>
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-icon">📺</div>
-        <span class="project-badge">OTT Streaming</span>
+    <div class="exp-item reveal">
+      <div class="exp-date-col">
+        <div class="exp-period"><strong>Oct 2021 – July 2025</strong>~4 years</div>
+        <span class="exp-badge badge-past">4 Years</span>
       </div>
-      <div class="project-name">ReeliesDrama</div>
-      <div class="project-desc">High-availability OTT drama streaming platform with AWS MediaConvert integration, global CDN routing, and 24×7 uptime SLA management.</div>
-      <div class="project-stack">
-        <span class="stack-tag">EKS</span><span class="stack-tag">MediaConvert</span>
-        <span class="stack-tag">CloudFront</span><span class="stack-tag">Route53</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-icon">📺</div>
-        <span class="project-badge">OTT Streaming</span>
-      </div>
-      <div class="project-name">Cafrica / FanVu / Ekluviya</div>
-      <div class="project-desc">Multi-region OTT streaming platforms with Route53 failover, WAF protection, automated SSL management, and weekly client performance reporting.</div>
-      <div class="project-stack">
-        <span class="stack-tag">Route53</span><span class="stack-tag">WAF</span>
-        <span class="stack-tag">ACM</span><span class="stack-tag">Ansible</span>
+      <div class="exp-body">
+        <div class="exp-company">Contus Tech</div>
+        <div class="exp-role">Cloud Administrator G-I</div>
+        <div class="exp-loc">Chennai, India · Full-time</div>
+        <div class="exp-desc">Owned cloud infrastructure for 25+ production projects — OTT streaming platforms (ReeliesDrama, Cafrica, FanVu, Ekluviya, Sumedplus, Royal Enfield) and the TrueID real-time messaging and call platform. Managed EKS and GKE clusters, Terraform IaC across all environments, Jenkins CI/CD pipelines, and a full Prometheus + Grafana + Loki observability stack. Delivered 24×7 uptime and weekly performance reports to clients.</div>
+        <div class="exp-pills"><span class="exp-pill">AWS</span><span class="exp-pill">EKS</span><span class="exp-pill">GKE</span><span class="exp-pill">Terraform</span><span class="exp-pill">Kubernetes</span><span class="exp-pill">Helm</span><span class="exp-pill">Jenkins</span><span class="exp-pill">Ansible</span><span class="exp-pill">Prometheus</span><span class="exp-pill">Grafana</span><span class="exp-pill">Loki</span></div>
       </div>
     </div>
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-icon">📺</div>
-        <span class="project-badge">OTT Streaming</span>
+    <div class="exp-item reveal">
+      <div class="exp-date-col">
+        <div class="exp-period"><strong>March 2020 – June 2021</strong>~15 months</div>
+        <span class="exp-badge badge-past">Trainee</span>
       </div>
-      <div class="project-name">Sumedplus</div>
-      <div class="project-desc">OTT streaming platform with strict security controls — VPC segmentation, IAM policies, vulnerability assessments, and encrypted data pipelines to S3.</div>
-      <div class="project-stack">
-        <span class="stack-tag">VPC</span><span class="stack-tag">IAM</span>
-        <span class="stack-tag">RDS</span><span class="stack-tag">S3</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-icon">📺</div>
-        <span class="project-badge">OTT Streaming</span>
-      </div>
-      <div class="project-name">Royal Enfield</div>
-      <div class="project-desc">OTT streaming infrastructure for Royal Enfield with robust CI/CD, Terraform-managed environments, and a full Prometheus + Grafana observability stack.</div>
-      <div class="project-stack">
-        <span class="stack-tag">Terraform</span><span class="stack-tag">Jenkins</span>
-        <span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-icon">💰</div>
-        <span class="project-badge">Cost Engineering</span>
-      </div>
-      <div class="project-name">Cloud Cost Optimization</div>
-      <div class="project-desc">Achieved 20–35% reduction in monthly AWS spend through right-sizing, Reserved Instances, and intelligent S3 lifecycle policies across multiple client accounts.</div>
-      <div class="project-stack">
-        <span class="stack-tag">AWS Cost Explorer</span><span class="stack-tag">S3 Lifecycle</span>
-        <span class="stack-tag">Reserved Instances</span>
+      <div class="exp-body">
+        <div class="exp-company">Qurhealth Solutions Pvt Ltd</div>
+        <div class="exp-role">Software Trainee</div>
+        <div class="exp-loc">India · Full-time</div>
+        <div class="exp-desc">Reduced AWS monthly costs by 20–35% through instance right-sizing, Reserved Instances, and S3 lifecycle policies. Managed incidents via ServiceNow and JIRA; supported developers on deployment and reliability issues.</div>
+        <div class="exp-pills"><span class="exp-pill">AWS</span><span class="exp-pill">S3</span><span class="exp-pill">ServiceNow</span><span class="exp-pill">JIRA</span><span class="exp-pill">Linux</span></div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
+<section id="platforms">
+  <div class="sec-eyebrow">// production systems</div>
+  <h2 class="sec-title">Platforms <em>Supported</em></h2>
+  <div class="platforms-grid">
+    <div class="plat-card reveal"><div class="plat-top"><div class="plat-icon">💬</div><span class="plat-type">Messaging &amp; Calls</span></div><div class="plat-name">TrueID</div><div class="plat-desc">Real-time messaging and call platform. Managed Kubernetes clusters, Cassandra for message persistence, Redis for sessions, and auto-scaling for peak concurrency.</div><div class="plat-stack"><span class="plat-tag">Kubernetes</span><span class="plat-tag">Cassandra</span><span class="plat-tag">Redis</span><span class="plat-tag">Helm</span></div></div>
+    <div class="plat-card reveal"><div class="plat-top"><div class="plat-icon">📺</div><span class="plat-type">OTT Streaming</span></div><div class="plat-name">ReeliesDrama</div><div class="plat-desc">High-availability drama streaming platform with AWS MediaConvert transcoding, CloudFront CDN, and Route53 failover routing.</div><div class="plat-stack"><span class="plat-tag">EKS</span><span class="plat-tag">MediaConvert</span><span class="plat-tag">CloudFront</span><span class="plat-tag">Route53</span></div></div>
+    <div class="plat-card reveal"><div class="plat-top"><div class="plat-icon">📺</div><span class="plat-type">OTT Streaming</span></div><div class="plat-name">Cafrica / FanVu / Ekluviya</div><div class="plat-desc">Multi-region OTT platforms with WAF protection, automated SSL via ACM + Certbot, and Ansible-driven deployments.</div><div class="plat-stack"><span class="plat-tag">Route53</span><span class="plat-tag">WAF</span><span class="plat-tag">ACM</span><span class="plat-tag">Ansible</span></div></div>
+    <div class="plat-card reveal"><div class="plat-top"><div class="plat-icon">📺</div><span class="plat-type">OTT Streaming</span></div><div class="plat-name">Sumedplus</div><div class="plat-desc">OTT platform with strict security controls — VPC segmentation, IAM least-privilege, vulnerability assessments, and encrypted S3 data pipelines.</div><div class="plat-stack"><span class="plat-tag">VPC</span><span class="plat-tag">IAM</span><span class="plat-tag">RDS</span><span class="plat-tag">S3</span></div></div>
+    <div class="plat-card reveal"><div class="plat-top"><div class="plat-icon">📺</div><span class="plat-type">OTT Streaming</span></div><div class="plat-name">Royal Enfield</div><div class="plat-desc">OTT streaming infrastructure with Terraform-managed multi-environment setup and full Prometheus + Grafana observability stack delivering SLA reports.</div><div class="plat-stack"><span class="plat-tag">Terraform</span><span class="plat-tag">Jenkins</span><span class="plat-tag">Prometheus</span><span class="plat-tag">Grafana</span></div></div>
+    <div class="plat-card reveal"><div class="plat-top"><div class="plat-icon">💰</div><span class="plat-type">Cost Engineering</span></div><div class="plat-name">Cloud Cost Optimization</div><div class="plat-desc">Achieved 20–35% AWS cost reduction across multiple accounts through right-sizing, Reserved Instances, and S3 lifecycle policies.</div><div class="plat-stack"><span class="plat-tag">Cost Explorer</span><span class="plat-tag">S3 Lifecycle</span><span class="plat-tag">Reserved Instances</span></div></div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="contact-inner">
-    <div class="section-label" style="text-align:center; display:block; margin-bottom: 1rem;">// let's connect</div>
-    <h2 class="contact-heading">Open to <span class="highlight">Opportunities</span></h2>
-    <p class="contact-sub">
-      Whether it's a challenging infrastructure problem, a platform reliability role,
-      or a conversation about cloud-native architecture — I'm always up for it.
-    </p>
-    <div class="contact-links">
-      <a href="mailto:mani.t.redhat@gmail.com" class="contact-link">
-        <span>✉</span> mani.t.redhat@gmail.com
-      </a>
-      <a href="tel:+917010545124" class="contact-link">
-        <span>📱</span> +91 70105 45124
-      </a>
-      <a href="https://github.com/mani-t-devops" target="_blank" class="contact-link">
-        <span>⌥</span> github.com/mani-t-devops
-      </a>
+    <div class="sec-eyebrow" style="text-align:center;display:block;margin-bottom:0.6rem">// let's connect</div>
+    <h2 class="contact-heading reveal">Let's Build<br><em>Together</em></h2>
+    <p class="contact-sub reveal">Open to Senior DevOps, SRE, Cloud Engineer, and Platform Engineering roles. Available immediately for full-time positions.</p>
+    <div class="contact-cards reveal">
+      <a href="mailto:mani.t.redhat@gmail.com" class="contact-card"><div class="contact-card-icon">✉️</div><div class="contact-card-text"><span class="contact-card-label">EMAIL</span><span class="contact-card-val">mani.t.redhat@gmail.com</span></div></a>
+      <a href="tel:+917010545124" class="contact-card"><div class="contact-card-icon">📱</div><div class="contact-card-text"><span class="contact-card-label">PHONE</span><span class="contact-card-val">+91 70105 45124</span></div></a>
+      <a href="https://github.com/mani-t-devops" target="_blank" rel="noopener" class="contact-card"><div class="contact-card-icon">⌥</div><div class="contact-card-text"><span class="contact-card-label">GITHUB</span><span class="contact-card-val">mani-t-devops</span></div></a>
     </div>
+    <div class="avail-note reveal"><div class="avail-dot"></div>Available immediately · Last working date July 1, 2026</div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  Built with <span>&#9825;</span> and raw HTML · Mani T © 2025 · <span>mani-t-devops.github.io</span>
+  <span>© 2026 Mani T</span>
+  <span style="color:rgba(255,255,255,0.1)">·</span>
+  <a href="https://github.com/mani-t-devops">github.com/mani-t-devops</a>
+  <span style="color:rgba(255,255,255,0.1)">·</span>
+  <span>Built &amp; hosted on GitHub Pages</span>
 </footer>
 
 <script>
-  // Typewriter effect
-  const titles = [
-    'DevOps Engineer',
-    'Cloud Infrastructure Architect',
-    'Kubernetes & Helm Specialist',
-    'CI/CD Pipeline Builder',
-    'SRE & Platform Engineer',
-  ];
-  let ti = 0, ci = 0, deleting = false;
-  const el = document.getElementById('typed-title');
-
-  function type() {
-    const current = titles[ti];
-    if (!deleting) {
-      el.textContent = current.slice(0, ++ci);
-      if (ci === current.length) {
-        deleting = true;
-        setTimeout(type, 2000);
-        return;
-      }
-    } else {
-      el.textContent = current.slice(0, --ci);
-      if (ci === 0) {
-        deleting = false;
-        ti = (ti + 1) % titles.length;
-      }
-    }
-    setTimeout(type, deleting ? 45 : 80);
-  }
-  type();
-
-  // Intersection observer for fade-in
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let c='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+c?'var(--cyan)':''})},{passive:true});
 </script>
 </body>
 </html>
